@@ -21,10 +21,11 @@ pipeline {
         }
 
         stage('Security Scan') {
-            steps {
-                bat 'bandit -r app'
-            }
-        }
+    steps {
+        bat 'C:\\Users\\kusha\\AppData\\Roaming\\Python\\Python312\\Scripts\\bandit.exe -r app'
+    }
+}
+
 
         stage('Deploy') {
             steps {
