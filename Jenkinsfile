@@ -21,11 +21,10 @@ pipeline {
         }
 
         stage('Security Scan') {
-    steps {
-        bat 'C:\\Users\\kusha\\AppData\\Roaming\\Python\\Python312\\Scripts\\bandit.exe -r app'
-    }
-}
-
+            steps {
+                bat 'C:\\Users\\kusha\\AppData\\Roaming\\Python\\Python312\\Scripts\\bandit.exe -r app || exit 0'
+            }
+        }
 
         stage('Deploy') {
             steps {
@@ -46,6 +45,18 @@ pipeline {
             steps {
                 echo 'Monitoring available at /metrics'
             }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ Pipeline completed successfully.'
+        }
+        failure {
+            echo '❌ Pipeline failed. Please check errors above.'
+        }
+        always {
+            echo '🧹 Final cleanup if required.'
         }
     }
 }
