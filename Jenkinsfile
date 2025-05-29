@@ -22,7 +22,7 @@ pipeline {
 
         stage('Security Scan') {
             steps {
-                bat 'C:\\Users\\kusha\\AppData\\Roaming\\Python\\Python312\\Scripts\\bandit.exe -r app || exit 0'
+                bat '"C:\\Python312\\python.exe" -m bandit -r app || exit 0'
             }
         }
 
