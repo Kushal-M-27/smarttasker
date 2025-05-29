@@ -4,13 +4,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'pip install -r requirements.txt'
+                bat 'pip install -r requirements.txt'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'python -m unittest discover tests'
+                bat 'python -m unittest discover tests'
             }
         }
 
@@ -22,13 +22,13 @@ pipeline {
 
         stage('Security Scan') {
             steps {
-                sh 'bandit -r app'
+                bat 'bandit -r app'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'docker-compose up -d --build'
+                bat 'docker-compose up -d --build'
             }
         }
 
